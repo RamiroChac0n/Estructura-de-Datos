@@ -2,10 +2,10 @@
 #include <stdlib.h>
 
 int main(){
-    printf("Ingrese un numero: ");
+    printf("Ingrese un numero: \n");
     int numeroInferior = 100;
-    printf("Ingrese otro numero: ");
-    int numeroSuperior = 5;
+    printf("Ingrese otro numero: \n");
+    int numeroSuperior = 0;
 
     if (numeroInferior > numeroSuperior)
     {
@@ -15,27 +15,28 @@ int main(){
     }
     printf("El numero menor es: %d \n", numeroInferior);
     printf("El numero mayor es: %d \n", numeroSuperior);
+    printf("Los numeros primos entre %d y %d son: \n", numeroInferior, numeroSuperior);
 
     int i;
     for ( i = numeroInferior; i <= numeroSuperior; i++)
     {
         int j;
         int bandera = 0;
-        for ( j = 1; j < numeroSuperior; j++)
+        for ( j = 1; j <= numeroSuperior; j++)
         {
             if (i % j == 0)
             {
                 bandera++;
             }
 
-            if (bandera > 2)        //Los numeros primos solo tienen 2 divisores (1 y ellos mismos), si tienen mas, no son primos.
+            if (bandera > 2 || j >= i)          //Los numeros primos solo tienen 2 divisores (1 y ellos mismos), si tienen mas, no son primos.
             {
-                return 2;
+                break;
             }
         }
-        if (bandera <= 2)
+        if (bandera <= 2 && !(i < 2))           //El primo mas pequenio es 2
         {
-            printf("%d",j);
+            printf("%d \n",i);
         }
         
     }
