@@ -2,10 +2,12 @@
 #include <stdlib.h>
 
 int main(){
+    int numeroInferior;
+    int numeroSuperior;
     printf("Ingrese un numero: \n");
-    int numeroInferior = 100;
+    scanf("%d", &numeroInferior);
     printf("Ingrese otro numero: \n");
-    int numeroSuperior = 0;
+    scanf("%d", &numeroSuperior);
 
     if (numeroInferior > numeroSuperior)
     {
@@ -40,5 +42,5 @@ int main(){
         }
         
     }
-    
+    return 0;
 }
