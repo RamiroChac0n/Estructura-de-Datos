@@ -125,7 +125,7 @@ int main(){
             printf("Ingrese el NIT del empleado: \n");
             scanf("%d", &nit);
             int i;
-            for (i = 0; i < 11; i++)
+            for (i = 0; i < 10; i++)
             {
                 if(empresa[i].nit == nit){
                     printf("---- Empleado ----\n");
@@ -141,7 +141,13 @@ int main(){
             }        
             break;
         case 2:
-            printf("Caso 2\n");
+            printf("---- Lista de Empleados ----\n");
+            int j;
+            for ( j = 0; j < 10; j++)
+            {
+                printf("%d. %s %s\n", j +1, empresa[j].firstName, empresa[j].lastName);
+            }
+            printf("\n");
             break; 
         case 3:
             break;                      
