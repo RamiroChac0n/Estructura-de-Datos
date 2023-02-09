@@ -9,6 +9,7 @@ int main(){
         switch (opcion)
         {
         case 1:
+            printf("Caso 1\n\n");
             break;
         case 2:
             printf("Caso 2\n\n");
@@ -39,6 +40,8 @@ void llenar(){
         int salario;
     };
 
+    struct Empleado empresa[10];
+
     struct Empleado emp0;
     emp0.id = 0;
     emp0.nit = 11;
@@ -47,6 +50,7 @@ void llenar(){
     emp0.phone = 45869523;
     strncpy(emp0.departamento, "Ingenieria", 19);
     emp0.salario = 1200;
+    empresa[0] = emp0;
 
     struct Empleado emp1;
     emp1.id = 1;
@@ -56,6 +60,7 @@ void llenar(){
     emp1.phone = 78964523;
     strncpy(emp1.departamento, "Zootecnia", 19);
     emp1.salario = 800;
+    empresa[1] = emp1;
 
     struct Empleado emp2;
     emp2.id = 2;
@@ -65,6 +70,7 @@ void llenar(){
     emp2.phone = 45869512;
     strncpy(emp2.departamento, "Ingenieria", 19);
     emp2.salario = 2500;
+    empresa[2] = emp2;
 
     struct Empleado emp3;
     emp3.id = 3;
@@ -74,6 +80,7 @@ void llenar(){
     emp3.phone = 56482351;
     strncpy(emp3.departamento, "Admon", 19);
     emp3.salario = 300;
+    empresa[3] = emp3;
 
     struct Empleado emp4;
     emp4.id = 4;
@@ -83,6 +90,7 @@ void llenar(){
     emp4.phone = 58462014;
     strncpy(emp4.departamento, "Estetica", 19);
     emp4.salario = 800;
+    empresa[4] = emp4;
 
     struct Empleado emp5;
     emp5.id = 5;
@@ -92,6 +100,7 @@ void llenar(){
     emp5.phone = 45869720;
     strncpy(emp5.departamento, "Filosofia", 19);
     emp5.salario = 3000;
+    empresa[5] = emp5;
 
     struct Empleado emp6;
     emp6.id = 6;
@@ -101,6 +110,7 @@ void llenar(){
     emp6.phone = 45368921;
     strncpy(emp6.departamento, "Electronica", 19);
     emp6.salario = 1300;
+    empresa[6] = emp6;
 
     struct Empleado emp7;
     emp7.id = 7;
@@ -110,6 +120,7 @@ void llenar(){
     emp7.phone = 45968952;
     strncpy(emp7.departamento, "Arquitectura", 19);
     emp7.salario = 950;
+    empresa[7] = emp7;
 
     struct Empleado emp8;
     emp8.id = 8;
@@ -119,6 +130,7 @@ void llenar(){
     emp8.phone = 48965237;
     strncpy(emp8.departamento, "Zootecnia", 19);
     emp8.salario = 1500;
+    empresa[8] = emp8;
 
     struct Empleado emp9;
     emp9.id = 9;
@@ -128,4 +140,5 @@ void llenar(){
     emp9.phone = 14857920;
     strncpy(emp9.departamento, "Derecho", 19);
     emp9.salario = 1700;
+    empresa[9] = emp9;
 }
