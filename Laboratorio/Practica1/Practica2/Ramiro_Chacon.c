@@ -3,32 +3,6 @@
 #include <string.h>
 
 int main(){
-    void llenar();
-    int opcion = 3;
-    do{      
-        switch (opcion)
-        {
-        case 1:
-            printf("Caso 1\n\n");
-            break;
-        case 2:
-            printf("Caso 2\n\n");
-            break; 
-        case 3:
-            break;                      
-        default:
-            printf("%d no es una opcion valida\n\n", opcion);
-            break;
-        }
-        printf("--- M E N U ---\n\n");
-        printf("1.  Buscar por NIT\n");
-        printf("2.  Listar todos los empleados\n");
-        printf("3.  SALIR\n");
-        scanf("%d", &opcion);          
-    }while(!(opcion == 3));
-    return 0;
-}
-void llenar(){
     struct Empleado
     {
         int id;
@@ -141,4 +115,44 @@ void llenar(){
     strncpy(emp9.departamento, "Derecho", 19);
     emp9.salario = 1700;
     empresa[9] = emp9;
+
+    int opcion = 3;
+    do{      
+        switch (opcion)
+        {
+        case 1:
+            int nit;
+            printf("Ingrese el NIT del empleado: \n");
+            scanf("%d", &nit);
+            printf("\n\n\n\n\n");
+            int i;
+            for (i = 0; i < 11; i++)
+            {
+                if(empresa[i].nit == nit){
+                    printf("----Empleado----\n");
+                    printf("Codigo de identificacion:   %d\n", empresa[i].id);
+                    printf("NIT:                        %d\n", empresa[i].nit);
+                    printf("Numero telefonico:          %d\n", empresa[i].phone);
+                    printf("Salario:                    $ %d.00\n", empresa[i].salario);
+                    printf("\n\n");
+                }
+            }        
+            break;
+        case 2:
+            printf("Caso 2\n");
+            break; 
+        case 3:
+            break;                      
+        default:
+            printf("%d no es una opcion valida\n\n", opcion);
+            break;
+        }
+        printf("--- M E N U ---\n\n");
+        printf("1.  Buscar por NIT\n");
+        printf("2.  Listar todos los empleados\n");
+        printf("3.  SALIR\n");
+        scanf("%d", &opcion); 
+        printf("\n\n\n\n\n");         
+    }while(!(opcion == 3));
+    return 0;
 }
