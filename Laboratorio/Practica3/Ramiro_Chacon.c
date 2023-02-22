@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
    
-struct fecha                                                            //Creando nuestro tipo de dato (Date) desde cero.
+struct fecha                                                            //Creando nuestro tipo de dato (Date) desde cero usando struct.
 {
         int day;
         int month;
