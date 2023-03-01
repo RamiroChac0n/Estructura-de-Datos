@@ -127,25 +127,11 @@ void deleteTail(struct node **list){
   }
 
   struct node *n = *list;
-int searchByValue(struct node *list, int v){
-  struct node *n = list;
-  int i = 0;
 
-  while( n ){
-    if( n->value == v ){
-      return i;
-    }
-    n = n->next;
-    i++;
-  }
-
-  return -1; //el v
-  }
-
-  if( !penultimate ){//lista con solo un elemento
+  if( !n ){//lista con solo un elemento
     *list = NULL;
   }else{             //la lista tiene mas de un elemento
-    penultimate->next = NULL;
+    n->next = NULL;
   }
   free(n);
 }
@@ -235,6 +221,11 @@ int main(){
   insertAt(&myList, 50, 2);
   */
 
+  insertTail(&myList, 5);
+  insertTail(&myList, 10);
+  insertTail(&myList, 13);
+  insertTail(&myList, 20);
+  insertTail(&myList, 50);
   insertTail(&myList, 8);
   insertHead(&myList, 6);
 
@@ -253,10 +244,10 @@ int main(){
   printf("Obtener indice 20: %d\n", searchByIndex(myList, 20));*/
 
   //deleteHead(&myList);
-  //deleteTail(&myList);
+  deleteTail(&myList);
   //deleteByIndex(&myList, 1);
 
-  //displayList(myList);
+  displayList(myList);
 
 
   clearList(&myList);
