@@ -131,6 +131,10 @@ void deleteTail(struct node **list){
   if( !n ){//lista con solo un elemento
     *list = NULL;
   }else{             //la lista tiene mas de un elemento
+    while (n->next->next)
+    {
+      n = n->next;
+    }
     n->next = NULL;
   }
   free(n);
