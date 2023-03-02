@@ -66,6 +66,30 @@ void insertTail(struct node **list, int v){
 * no se encuentra previamente en la lista
 -------------------------------------------
 */ 
+void insertAt(struct node **list, int v, int i){
+  struct node *newNode = createNode(v);
+  if( !(*list) ){
+    return; //lista vacia
+  }
+  struct node *n = *list;
+  if (searchByValue(n, v) != -1)
+  {
+    return;
+  }else
+  {
+    if(i == 0){
+      insertHead(list, v);
+    }else if(i <= longitud(list)){
+      int posicion = 0;
+      while (++posicion < i)
+      {
+        n = n->next;
+      }
+      newNode->next = n->next;
+      n->next = newNode;
+    }
+  }
+}
 
 
 
@@ -213,6 +237,17 @@ void clearList(struct node **list){
   *list = NULL;
 }
 
+int longitud(struct node **list){
+  struct node *n = *list;
+  int contador = 0;
+  while ( n )
+  {
+    n = n->next;
+    contador++;
+  }
+  return contador;
+}
+
 
 int main(){
   struct node *myList = NULL;
@@ -233,6 +268,10 @@ int main(){
   insertTail(&myList, 8);
   insertHead(&myList, 6);
 
+  displayList(myList);
+
+  insertAt(&myList, 99, 7);
+
 
   displayList(myList);
 /*
@@ -248,10 +287,10 @@ int main(){
   printf("Obtener indice 20: %d\n", searchByIndex(myList, 20));*/
 
   //deleteHead(&myList);
-  deleteTail(&myList);
+  //deleteTail(&myList);
   //deleteByIndex(&myList, 1);
 
-  displayList(myList);
+  //displayList(myList);
 
 
   clearList(&myList);
