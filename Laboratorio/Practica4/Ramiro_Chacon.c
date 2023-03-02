@@ -205,7 +205,13 @@ void deleteByIndex(struct node **list, int i){
 * copias del valor seleccionado pra remover
 -------------------------------------------
 */ 
+void deleteByValue(struct node **list, int v){
+  if( !(*list) ){
+    return; //lista vacia
+  }
 
+  struct node *n = *list;  
+}
 
 
 
