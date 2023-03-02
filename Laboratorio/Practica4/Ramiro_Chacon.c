@@ -177,6 +177,12 @@ void deleteByIndex(struct node **list, int i){
     return;
   }
 
+  if (i == longitud(list))
+  {
+    deleteTail(list);
+  }
+  
+
   struct node *n = *list;
   struct node *previous = NULL;
   int j = 0;
@@ -217,10 +223,23 @@ void deleteByValue(struct node **list, int v){
   }
 }
 
+//----------Operaciones para Pilas-------------------
+void pushPila(struct node **list, int v){
+  insertHead(list, v);
+}
 
+void popPila(struct node **list){
+  deleteHead(list);
+}
 
+//----------Operaciones para Colas-------------------
+void pushCola(struct node **list, int v){
+  insertHead(list, v);
+}
 
-
+void popCola(struct node **list){
+  deleteTail(list);
+}
 
 
 //--------------------------Extras-------------------
@@ -277,7 +296,7 @@ int main(){
   insertHead(&myList, 6);
 
   displayList(myList);
-/*
+
   printf("Buscar valor 6: indice: %d\n", searchByValue(myList, 6));
   printf("Buscar valor 50: indice: %d\n", searchByValue(myList, 50));
   printf("Buscar valor 8: indice: %d\n", searchByValue(myList, 8));
@@ -287,14 +306,22 @@ int main(){
   printf("Obtener indice 3: %d\n", searchByIndex(myList, 3));
   printf("Obtener indice 6: %d\n", searchByIndex(myList, 6));
   printf("Obtener indice 7: %d\n", searchByIndex(myList, 7));
-  printf("Obtener indice 20: %d\n", searchByIndex(myList, 20));*/
+  printf("Obtener indice 20: %d\n", searchByIndex(myList, 20));
 
-  //deleteHead(&myList);
-  //deleteTail(&myList);
-  //deleteByIndex(&myList, 1);
-
+  deleteHead(&myList);
+  deleteByIndex(&myList, 1);
   deleteByValue(&myList, 50);
+  //deleteTail(&myList);
+  displayList(myList);
 
+  pushPila(&myList, 8);
+  displayList(myList);
+  popPila(&myList);
+
+  displayList(myList);
+
+  pushCola(&myList, 15);
+  popCola(&myList);
   displayList(myList);
 
 
