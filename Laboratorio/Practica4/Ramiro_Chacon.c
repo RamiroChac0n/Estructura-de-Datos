@@ -157,9 +157,10 @@ void deleteTail(struct node **list){
     {
       n = n->next;
     }
+    free(n->next->next);
     n->next = NULL;
   }
-  free(n);
+  //free(n);
 }
 
 
@@ -295,8 +296,9 @@ int main(){
   insertTail(&myList, 8);
   insertHead(&myList, 6);
 
+  printf("Lista: ");
   displayList(myList);
-
+  
   printf("Buscar valor 6: indice: %d\n", searchByValue(myList, 6));
   printf("Buscar valor 50: indice: %d\n", searchByValue(myList, 50));
   printf("Buscar valor 8: indice: %d\n", searchByValue(myList, 8));
@@ -308,20 +310,40 @@ int main(){
   printf("Obtener indice 7: %d\n", searchByIndex(myList, 7));
   printf("Obtener indice 20: %d\n", searchByIndex(myList, 20));
 
+  printf("DeleteHead: ");
   deleteHead(&myList);
-  deleteByIndex(&myList, 1);
-  deleteByValue(&myList, 50);
-  //deleteTail(&myList);
   displayList(myList);
 
+  printf("DeleteByIndex: ");
+  deleteByIndex(&myList, 1);
+  displayList(myList);
+
+  printf("DeleTail: ");
+  deleteTail(&myList);
+  displayList(myList);
+  
+  printf("DeleteValue: ");
+  deleteByValue(&myList, 50);
+  displayList(myList);
+
+  printf("PushPila: ");
   pushPila(&myList, 8);
   displayList(myList);
-  popPila(&myList);
 
+  printf("PopPila: ");
+  popPila(&myList);
   displayList(myList);
 
+  printf("PushCola: ");
   pushCola(&myList, 15);
+  displayList(myList);
+
+  printf("PopCola: ");
   popCola(&myList);
+  displayList(myList);
+
+  printf("DeleTail: ");
+  deleteTail(&myList);
   displayList(myList);
 
 
