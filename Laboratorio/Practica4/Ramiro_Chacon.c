@@ -68,9 +68,7 @@ void insertTail(struct node **list, int v){
 */ 
 void insertAt(struct node **list, int v, int i){
   struct node *newNode = createNode(v);
-  if( !(*list) ){
-    return; //lista vacia
-  }
+
   struct node *n = *list;
   if (searchByValue(n, v) != -1)
   {
@@ -252,25 +250,22 @@ int longitud(struct node **list){
 int main(){
   struct node *myList = NULL;
 
-  /*
+  
   insertAt(&myList, 5, 0);
   insertAt(&myList, 10, 0);
   insertAt(&myList, 13, 2);
   insertAt(&myList, 20, 3);
   insertAt(&myList, 50, 2);
-  */
 
-  insertTail(&myList, 5);
-  insertTail(&myList, 10);
-  insertTail(&myList, 13);
-  insertTail(&myList, 20);
-  insertTail(&myList, 50);
+  /*
   insertTail(&myList, 8);
   insertHead(&myList, 6);
+  */
 
   displayList(myList);
 
   insertAt(&myList, 99, 7);
+  insertAt(&myList, 200, 2);
 
 
   displayList(myList);
