@@ -210,7 +210,11 @@ void deleteByValue(struct node **list, int v){
     return; //lista vacia
   }
 
-  struct node *n = *list;  
+  struct node *n = *list; 
+  while (searchByValue(n, v) != -1)
+  {
+    deleteByIndex(list, searchByValue(n, v));
+  }
 }
 
 
@@ -263,16 +267,14 @@ int main(){
   insertAt(&myList, 20, 3);
   insertAt(&myList, 50, 2);
 
-  /*
+  insertTail(&myList, 5);
+  insertTail(&myList, 50);
+  insertTail(&myList, 50);
+  insertTail(&myList, 50);
+  insertTail(&myList, 50);
+
   insertTail(&myList, 8);
   insertHead(&myList, 6);
-  */
-
-  displayList(myList);
-
-  insertAt(&myList, 99, 7);
-  insertAt(&myList, 200, 2);
-
 
   displayList(myList);
 /*
@@ -291,7 +293,9 @@ int main(){
   //deleteTail(&myList);
   //deleteByIndex(&myList, 1);
 
-  //displayList(myList);
+  deleteByValue(&myList, 50);
+
+  displayList(myList);
 
 
   clearList(&myList);
