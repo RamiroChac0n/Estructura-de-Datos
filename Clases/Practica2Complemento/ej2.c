@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <conio.h>
 
 void mult9(int arreglo[9][12]){
     int fila, columna, contador;
@@ -37,8 +36,7 @@ void mostrar(int arreglo[9][12]){
 int main(){
     int arreglo[9][12];
     mult9(arreglo);
-    print("Los elementos de la matriz principal son: \n");
+    printf("Los elementos de la matriz principal son: \n");
     mostrar(arreglo);
-    getch();
     return 0;
 }
