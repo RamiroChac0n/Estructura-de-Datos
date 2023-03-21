@@ -2,6 +2,14 @@
 #include <stdlib.h>
 #include <string.h>
 
+//struct de compra
+struct compra
+{
+    char descripcion[20];
+    struct compra* next;
+};
+
+/*
 struct mes
 {
     char nombre[20];
@@ -18,9 +26,36 @@ struct PROGRAMACION
     char tarea[50];
     struct PROGRAMACION* next;
 };
-
+*/
 
 int main(){
+
+    struct compra *list0;
+    struct compra *list00;
+    struct compra *list000;
+    struct compra *list1;
+    struct compra *list2;
+    struct compra *list3;
+    struct compra *list4;
+    struct compra *list5;
+    struct compra *list6;
+    struct compra *list7;
+    struct compra *list8;
+    struct compra *list9;
+    struct compra *list10;
+    struct compra *list11;
+
+    //Lista con 2 objetos.
+    strncpy(list0->descripcion, "Huevos", 19);
+    list0->next = list00;
+    strncpy(list00->descripcion, "Carne", 19);
+    list00->next = list000;
+
+    //Compras
+    struct compra compras[12] = {list0, list1, list2, list3, list4, list5, list6, list7, list8, list9, list10, list11};
+
+
+    /*
     struct mes anio[12];
 
     struct mes enero;
@@ -72,5 +107,6 @@ int main(){
     anio[10] = noviembre;
     anio[11] = diciembre;
 
+    */
     return 0;
 }
