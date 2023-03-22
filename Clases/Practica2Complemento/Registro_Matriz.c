@@ -16,7 +16,7 @@ void ingreso_cliente(){
             scanf("%i", &clientes[i][j].edad);
             fflush(stdin);
             printf("Ingrese su nombre: \n");
-            gets(clientes[i][j].nombre);
+            fgets(clientes[i][j].nombre, 10, stdin);
             printf("Ingrese su sueldo: \n");
             scanf("%f", &clientes[i][j].sueldo);
             fflush(stdin);
@@ -35,14 +35,12 @@ void mostrar_cliente(){
             printf("\n\n");
         }
     }
-    system("pause");
 }
 
-main(){
+int main(){
     char resp;
     int opc;
     do{
-        system("cls");
         printf("Menu de opciones: \n");
         printf("1. Ingresar datos del cliente. \n");
         printf("2. Mostrar datos del cliente. \n");
@@ -58,7 +56,7 @@ main(){
                 mostrar_cliente();
                 break;
             case 3:
-                //exit(0);
+                exit(0);
                 break;
             default:
                 printf("Opcion no valida. \n");
