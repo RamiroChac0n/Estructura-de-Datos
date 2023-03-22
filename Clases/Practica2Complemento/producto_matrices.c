@@ -35,7 +35,7 @@ unsigned PedirTamano(const char *cadena){
 void PedirMatriz(struct matriz *a){
     register unsigned i, j;
     float valor;
-    a->filas = PedirTamano("Introduce el numero de filas: ");
+    a->filas = PedirTamano("\nIntroduce el numero de filas: ");
     a->columnas = PedirTamano("\nIntroduce el numero de columnas: \n");
     for(i = 0; i < a->filas; i++)
         for(j = 0; j < a->columnas; j++)
@@ -79,7 +79,7 @@ int main(void){
     struct matriz a, b, res;
     char d;
     a.filas = a.columnas = b.filas = b.columnas = 1;
-    a.matriz[0][0] = b.matriz[0][0] = 1;
+    a.matriz[0][0] = b.matriz[0][0] = 1.0;
     do
     {
         switch (d = Menu())
