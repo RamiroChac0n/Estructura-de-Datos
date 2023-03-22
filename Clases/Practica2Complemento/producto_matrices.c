@@ -21,7 +21,7 @@ char Menu(void){
 }
 
 unsigned PedirTamano(const char *cadena){
-    unsigned valor;
+    unsigned valor = 0;
     do
     {
         printf("%s", cadena);
@@ -36,12 +36,14 @@ void PedirMatriz(struct matriz *a){
     register unsigned i, j;
     float valor;
     a->filas = PedirTamano("Introduce el numero de filas: ");
-    a->columnas = PedirTamano("Introduce el numero de columnas: ");
+    a->columnas = PedirTamano("\nIntroduce el numero de columnas: \n");
     for(i = 0; i < a->filas; i++)
         for(j = 0; j < a->columnas; j++)
         {
             printf("M[%u][%u] = ", i, j);
             scanf("%f", &valor);
+            fflush(stdin);
+            printf("\n");
             a->matriz[i][j] = valor;
         }
 }
@@ -52,11 +54,11 @@ int Multiplicar(const struct matriz *a, const struct matriz *b, struct matriz *r
         return ERROR;
     res->filas = a->filas;
     res->columnas = b->columnas;
-    for(i = 0; i < res->filas; i++)
-        for(j = 0; j < res->columnas; j++)
+    for(i = 0; i < a->filas; i++)
+        for(j = 0; j < b->columnas; j++)
         {
             res->matriz[i][j] = 0;
-            for(k = 0; k < a->columnas; k++)
+            for(k = 0; k < a->filas; k++)
                 res->matriz[i][j] += a->matriz[i][k] * b->matriz[k][j];
         }
     return OK;
@@ -66,11 +68,10 @@ void Mostrar(const struct matriz *res){
     register unsigned i, j;
     for(i = 0; i < res->filas; i++)
     {
-        for(j = 0; j < res->columnas; j++){
+        for(j = 0; j < res->columnas; j++)
             printf("Res[%u][%u] = %f\n", i, j, res->matriz[i][j]);
-            printf("\nPulsa Enter para continuar...\n");
-            getchar();
-        }
+        printf("\nPulsa Enter para continuar...\n");
+        getchar();
     }
 }
 
@@ -79,9 +80,9 @@ int main(void){
     char d;
     a.filas = a.columnas = b.filas = b.columnas = 1;
     a.matriz[0][0] = b.matriz[0][0] = 1;
-    while((d = Menu()) != '0')
+    do
     {
-        switch (d)
+        switch (d = Menu())
         {
         case '1':
             PedirMatriz(&a);
@@ -104,6 +105,7 @@ int main(void){
         default:
             break;
         }
-    }
+    } while (d != '0');
+    
     return 0;
 }
