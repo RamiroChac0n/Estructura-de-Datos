@@ -26,9 +26,9 @@ unsigned PedirTamano(const char *cadena){
     {
         printf("%s", cadena);
         scanf("%u", &valor);
-
-    } while (valor == 0 || valor > TAM);
-    
+        fflush(stdin);
+        printf("\n");
+    } while (valor < 1 || valor > TAM);
     return valor;
 }
 
