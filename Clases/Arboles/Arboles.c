@@ -71,6 +71,39 @@ int mostrarArbol(nodo *raiz, int contador){             //Crea la función para 
     
 }
 
+void recorrerArbol(nodo *ptrPadre){
+    if (ptrPadre != NULL)
+    {
+        recorrerArbol(ptrPadre->hizquierdo);
+        printf("%d", ptrPadre->dato);
+        printf(".");
+        recorrerArbol(ptrPadre->hderecho);
+    }
+    
+}
+
+void recorrerArbolPreOrden(nodo *ptrPadre){
+    if (ptrPadre != NULL)
+    {
+        printf("%d", ptrPadre->dato);
+        printf(".");
+        recorrerArbolPreOrden(ptrPadre->hizquierdo);
+        recorrerArbolPreOrden(ptrPadre->hderecho);
+    }
+    
+}
+
+void recorrerArbolPostOrden(nodo *ptrPadre){
+    if (ptrPadre != NULL)
+    {
+        recorrerArbolPostOrden(ptrPadre->hizquierdo);
+        recorrerArbolPostOrden(ptrPadre->hderecho);
+        printf("%d", ptrPadre->dato);
+        printf(".");
+    }
+    
+}
+
 int main(){                                             //Función main.
 
     agregarDatoArbol(40);                               //Agrega un dato y crea un nuevo nodo.
@@ -80,5 +113,11 @@ int main(){                                             //Función main.
     agregarDatoArbol(60);                               //Agrega un dato y crea un nuevo nodo.
     agregarDatoArbol(45);                               //Agrega un dato y crea un nuevo nodo.
     mostrarArbol(arbol->raiz, 0);                       //lLama a la función mostrarArbol para imprimirlo en pantalla, le mandamos un puntero indicandole la raiz y en que posición empezamos.
+    printf("\nInOrden:\n");
+    recorrerArbol(arbol->raiz);
+    printf("\nPreOrden:\n");
+    recorrerArbolPreOrden(arbol->raiz);
+    printf("\nPostOrden:\n");
+    recorrerArbolPostOrden(arbol->raiz);
     return 0;                                           //Retorna 0 si todo está bien.
 }
