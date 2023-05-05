@@ -6,7 +6,7 @@
 
 void AgregarDato();
 int BuscarDato();
-int EliminarDato();
+//int EliminarDato();
 
 typedef struct Registro
 {
@@ -29,7 +29,7 @@ IniciarTabla(){
     int i;
     while (i < 100)
     {
-        tabla[i] = mallock(sizeof(nodo));
+        tabla[i] = malloc(sizeof(nodo));
         tabla[i]->reg = NULL;
         tabla[i]->tamanioLista = 0;
         i++;
@@ -47,7 +47,7 @@ int funcionHash(char nombre[100]){
 }
 
 registro *CrearNodo(char nombre[100], char contrasena[100], char Info[100]){
-    registro *aux = mallock(sizeof(registro));
+    registro *aux = malloc(sizeof(registro));
     strcpy(aux->nombre, nombre);
     strcpy(aux->contrasena, contrasena);
     strcpy(aux->Info, Info);
@@ -101,25 +101,37 @@ void AgregarDato(){
 
 //Nos quedamos por acá
 int BuscarDato(){
-    char nombre[100];
-    printf("Escriba el nombre de la cuenta que desea buscar:\n");
+    char nombre[100], contrasena[100];
+    printf("Ingrese su nombre de cuenta\n");
     fflush(stdin);
     gets(nombre);
     int hash = funcionHash(nombre);
-    registro *aux = tabla[hash]->reg;
-    while (aux != NULL)
-    {
-        if (strcmp(aux->nombre, nombre) == 0)
+    if(tabla[hash]->reg != NULL){
+        registro *aux = tabla[hash]->reg;
+        while (aux != NULL)
         {
-            printf("Nombre: %s\n", aux->nombre);
-            printf("Contrasena: %s\n", aux->contrasena);
-            printf("Informacion: %s\n", aux->Info);
-            return 1;
-        }
-        aux = aux->sig;
+            if (strcmp(aux->nombre, nombre) == 0)
+            {
+                printf("Ingrese la contrasena para confirmar el acceso\n");
+                fflush(stdin);
+                gets(contrasena);
+
+                if(strcmp(contrasena, aux->contrasena) == 0){
+                    printf("Se ha logueado con exito\n");
+                    printf("Informacion\n -------------- \n");
+                    printf("%s", aux->Info);
+                    printf("\n ------- \n");
+                }else{
+                    printf("Login fallido\n");
+                    return 0;
+                }
+                aux = aux->sig;
+            }else{
+                printf("Este usuario no existe\n");
+                return 0;
+            }
+        }       
     }
-    printf("No se encontro la cuenta\n");
-    return 0;
 }
 
 int main(){
@@ -142,7 +154,7 @@ int main(){
             BuscarDato();
             break;
         case 3:
-            EliminarDato();
+            //EliminarDato();
             break;
         case 4:
             cont = 0;
