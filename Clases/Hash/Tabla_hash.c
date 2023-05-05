@@ -6,7 +6,7 @@
 
 void AgregarDato();
 int BuscarDato();
-//int EliminarDato();
+int EliminarDato();
 
 typedef struct Registro
 {
@@ -59,7 +59,7 @@ void AgregarDato(){
     char nombre[100];
     char contrasena[100];
     char info[100];
-    printf("Escribar el nombre de la cuenta: ");
+    printf("Escribar el nombre de la cuenta:\n");
     fflush(stdin);
     gets(nombre);
 
@@ -99,7 +99,6 @@ void AgregarDato(){
     }
 }
 
-//Nos quedamos por acá
 int BuscarDato(){
     char nombre[100], contrasena[100];
     printf("Ingrese su nombre de cuenta\n");
@@ -134,6 +133,38 @@ int BuscarDato(){
     }
 }
 
+// Nos quedamos por acá
+EliminarDato(){
+    char nombreCuenta[100], contrasena[100];
+    printf("Ingrese el nombre de la cuenta a eliminar\n");
+    fflush(stdin);
+    gets(nombreCuenta);
+    int hash = funcionHash(nombreCuenta);
+    if(tabla[hash]->reg != NULL){
+        registro *aux = tabla[hash]->reg;
+        registro *auxAnt = NULL;
+
+        while (aux != NULL)
+        {
+            if (strcmp(nombreCuenta, aux->nombre) == 0)
+            {
+                printf("Ingrese la ocntrasena para confirmar la accion \n");
+                fflush(stdin);
+                gets(contrasena);
+                
+                if (strcmp(contrasena, aux->contrasena) == 0)
+                {
+                    if (auxAnt != NULL)
+                    {
+                        tabla[hash]->reg = aux->sig;
+                        free(aux);
+                    }   
+                }  
+            } 
+        } 
+    }
+}
+
 int main(){
     IniciarTabla();
     int resp, cont = 1;
@@ -154,7 +185,7 @@ int main(){
             BuscarDato();
             break;
         case 3:
-            //EliminarDato();
+            EliminarDato();
             break;
         case 4:
             cont = 0;
