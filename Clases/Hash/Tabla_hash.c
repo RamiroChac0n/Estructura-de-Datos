@@ -26,7 +26,7 @@ typedef struct Nodo
 nodo *tabla[100];
 
 IniciarTabla(){
-    int i;
+    int i = 0;
     while (i < 100)
     {
         tabla[i] = malloc(sizeof(nodo));
@@ -46,11 +46,11 @@ int funcionHash(char nombre[100]){
     return suma % 100;
 }
 
-registro *CrearNodo(char nombre[100], char contrasena[100], char Info[100]){
+registro *CrearNodo(char nombre[100], char contrasena[100], char info[1000]){
     registro *aux = malloc(sizeof(registro));
     strcpy(aux->nombre, nombre);
     strcpy(aux->contrasena, contrasena);
-    strcpy(aux->Info, Info);
+    strcpy(aux->Info, info);
     aux->sig = NULL;
     return aux;
 }
@@ -61,7 +61,7 @@ void AgregarDato(){
     char info[100];
     printf("Escribar el nombre de la cuenta:\n");
     fflush(stdin);
-    gets(nombre);
+    fgets(nombre, 100, stdin);
 
     int hash = funcionHash(nombre);
     registro *comprobarCuenta = tabla[hash]->reg;
@@ -76,10 +76,10 @@ void AgregarDato(){
     }
     printf("Escriba la contrasena de la cuenta:\n");
     fflush(stdin);
-    gets(contrasena);
+    fgets(contrasena, 100, stdin);
     printf("Escriba la informacion de la cuenta:\n");
     fflush(stdin);
-    gets(info);
+    fgets(info, 100, stdin);
 
     registro *nodo = CrearNodo(nombre, contrasena, info);
     if (tabla[hash]->reg == NULL)
@@ -95,7 +95,8 @@ void AgregarDato(){
             aux = aux->sig;
         }
         aux->sig = nodo;
-        tabla[hash]->tamanioLista++;
+        int tamanoLista = tabla[hash]->tamanioLista;
+        tabla[hash]->tamanioLista = tamanoLista +1; 
     }
 }
 
@@ -103,17 +104,17 @@ int BuscarDato(){
     char nombre[100], contrasena[100];
     printf("Ingrese su nombre de cuenta\n");
     fflush(stdin);
-    gets(nombre);
+    fgets(nombre, 100, stdin);
     int hash = funcionHash(nombre);
     if(tabla[hash]->reg != NULL){
         registro *aux = tabla[hash]->reg;
         while (aux != NULL)
         {
-            if (strcmp(aux->nombre, nombre) == 0)
+            if (strcmp(nombre, aux->nombre) == 0)
             {
                 printf("Ingrese la contrasena para confirmar el acceso\n");
                 fflush(stdin);
-                gets(contrasena);
+                fgets(contrasena, 100, stdin);
 
                 if(strcmp(contrasena, aux->contrasena) == 0){
                     printf("Se ha logueado con exito\n");
@@ -138,7 +139,7 @@ EliminarDato(){
     char nombreCuenta[100], contrasena[100];
     printf("Ingrese el nombre de la cuenta a eliminar\n");
     fflush(stdin);
-    gets(nombreCuenta);
+    fgets(nombreCuenta, 100, stdin);
     int hash = funcionHash(nombreCuenta);
     if(tabla[hash]->reg != NULL){
         registro *aux = tabla[hash]->reg;
@@ -150,19 +151,34 @@ EliminarDato(){
             {
                 printf("Ingrese la ocntrasena para confirmar la accion \n");
                 fflush(stdin);
-                gets(contrasena);
+                fgets(contrasena, 100, stdin);
                 
                 if (strcmp(contrasena, aux->contrasena) == 0)
                 {
-                    if (auxAnt != NULL)
+                    if (auxAnt == NULL)
                     {
                         tabla[hash]->reg = aux->sig;
                         free(aux);
-                    }   
-                }  
+                    }else
+                    {
+                        if (aux->sig == NULL)
+                        {
+                            auxAnt->sig = aux->sig;
+                            free(aux);
+                        }
+                    }
+                    printf("La cuenta fue eliminada con éxito\n");
+                    return 0;
+                }else
+                {
+                    printf("Acción denegada\n");
+                }
             } 
+            auxAnt = aux;
+            aux = aux->sig;
         } 
     }
+    printf("Cuenta inexistente\n");
 }
 
 int main(){
@@ -192,7 +208,6 @@ int main(){
             break;
         default:
             printf("Opcion no valida\n");
-            break;
         }
     }
     return 0;
