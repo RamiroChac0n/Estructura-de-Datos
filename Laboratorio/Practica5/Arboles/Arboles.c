@@ -71,35 +71,35 @@ int mostrarArbol(nodo *raiz, int contador){             //Crea la función para 
     
 }
 
-void recorrerArbol(nodo *ptrPadre){
-    if (ptrPadre != NULL)
+void recorrerArbol(nodo *ptrPadre){                     //Crea la función para recorrer el árbol.
+    if (ptrPadre != NULL)                               //Si el árbol está vació, no muestra nada.
     {
-        recorrerArbol(ptrPadre->hizquierdo);
-        printf("%d", ptrPadre->dato);
-        printf(".");
-        recorrerArbol(ptrPadre->hderecho);
+        recorrerArbol(ptrPadre->hizquierdo);            //Si no está vació, procedemos a recorrer el árbol y a mostrarlo en pantalla.
+        printf("%d", ptrPadre->dato);                   //Imprime en pantalla en valor del nodo actual.
+        printf(".");                                    //Agrega un punto para separar los nodos.
+        recorrerArbol(ptrPadre->hderecho);              //Usamos recursividad para imprimir el árbol y nos movemos de nodo, diciendole a la raíz que apunte al hijo derecho.
     }
     
 }
 
-void recorrerArbolPreOrden(nodo *ptrPadre){
-    if (ptrPadre != NULL)
+void recorrerArbolPreOrden(nodo *ptrPadre){             //Crea la función para recorrer el árbol en preorden.
+    if (ptrPadre != NULL)                               //Si el árbol está vació, no muestra nada.
     {
-        printf("%d", ptrPadre->dato);
-        printf(".");
-        recorrerArbolPreOrden(ptrPadre->hizquierdo);
-        recorrerArbolPreOrden(ptrPadre->hderecho);
+        printf("%d", ptrPadre->dato);                   //Imprime en pantalla en valor del nodo actual.
+        printf(".");                                    //Agrega un punto para separar los nodos.
+        recorrerArbolPreOrden(ptrPadre->hizquierdo);    //Si no está vació, procedemos a recorrer el árbol y a mostrarlo en pantalla. 
+        recorrerArbolPreOrden(ptrPadre->hderecho);      //Usamos recursividad para imprimir el árbol y nos movemos de nodo, diciendole a la raíz que apunte al hijo derecho.
     }
     
 }
 
-void recorrerArbolPostOrden(nodo *ptrPadre){
-    if (ptrPadre != NULL)
+void recorrerArbolPostOrden(nodo *ptrPadre){            //Crea la función para recorrer el árbol en postorden.
+    if (ptrPadre != NULL)                               //Si el árbol está vació, no muestra nada.
     {
-        recorrerArbolPostOrden(ptrPadre->hizquierdo);
-        recorrerArbolPostOrden(ptrPadre->hderecho);
-        printf("%d", ptrPadre->dato);
-        printf(".");
+        recorrerArbolPostOrden(ptrPadre->hizquierdo);   //Si no está vació, procedemos a recorrer el árbol y a mostrarlo en pantalla.
+        recorrerArbolPostOrden(ptrPadre->hderecho);     //Usamos recursividad para imprimir el árbol y nos movemos de nodo, diciendole a la raíz que apunte al hijo derecho.
+        printf("%d", ptrPadre->dato);                   //Imprime en pantalla en valor del nodo actual.
+        printf(".");                                    //Agrega un punto para separar los nodos.
     }
     
 }
@@ -113,11 +113,11 @@ int main(){                                             //Función main.
     agregarDatoArbol(60);                               //Agrega un dato y crea un nuevo nodo.
     agregarDatoArbol(45);                               //Agrega un dato y crea un nuevo nodo.
     mostrarArbol(arbol->raiz, 0);                       //lLama a la función mostrarArbol para imprimirlo en pantalla, le mandamos un puntero indicandole la raiz y en que posición empezamos.
-    printf("\nInOrden:\n");
-    recorrerArbol(arbol->raiz);
-    printf("\nPreOrden:\n");
-    recorrerArbolPreOrden(arbol->raiz);
-    printf("\nPostOrden:\n");
-    recorrerArbolPostOrden(arbol->raiz);
+    printf("\nInOrden:\n");                             //Imprime en pantalla el recorrido del árbol en inorden.
+    recorrerArbol(arbol->raiz);                         //Llama a la función recorrerArbol para imprimirlo en pantalla, le mandamos un puntero indicandole la raiz.
+    printf("\nPreOrden:\n");                            //Imprime en pantalla el recorrido del árbol en preorden.
+    recorrerArbolPreOrden(arbol->raiz);                 //Llama a la función recorrerArbolPreOrden para imprimirlo en pantalla, le mandamos un puntero indicandole la raiz.
+    printf("\nPostOrden:\n");                           //Imprime en pantalla el recorrido del árbol en postorden.
+    recorrerArbolPostOrden(arbol->raiz);                //Llama a la función recorrerArbolPostOrden para imprimirlo en pantalla, le mandamos un puntero indicandole la raiz.
     return 0;                                           //Retorna 0 si todo está bien.
 }
