@@ -72,70 +72,71 @@ int mostrarArbol(nodo *raiz, int contador){             //Crea la función para 
     
 }
 
-void recorrerArbol(nodo *ptrPadre){
-    if (ptrPadre != NULL)
+void recorrerArbol(nodo *ptrPadre){                     //Crea una función para recorrer el árbol.
+    if (ptrPadre != NULL)                               //Si el árbol no está vació, entonces se ejecuta.
     {
-        recorrerArbol(ptrPadre->hizquierdo);
-        printf("%d", ptrPadre->dato);
-        printf(".");
-        recorrerArbol(ptrPadre->hderecho);
+        recorrerArbol(ptrPadre->hizquierdo);            //Se mueve al hijo izquierdo.
+        printf("%d", ptrPadre->dato);                   //Imprime el valor del nodo actual.
+        printf(".");                                    //Imprime un punto para separar los valores.
+        recorrerArbol(ptrPadre->hderecho);              //Se mueve al hijo derecho.
     }
     
 }
 
-void recorrerArbolPreOrden(nodo *ptrPadre){
-    if (ptrPadre != NULL)
+void recorrerArbolPreOrden(nodo *ptrPadre){             //Crea una función para recorrer el árbol en preorden.
+    if (ptrPadre != NULL)                               //Si el árbol no está vació, entonces se ejecuta.
     {
-        printf("%d", ptrPadre->dato);
-        printf(".");
-        recorrerArbolPreOrden(ptrPadre->hizquierdo);
-        recorrerArbolPreOrden(ptrPadre->hderecho);
+        printf("%d", ptrPadre->dato);                   //Imprime el valor del nodo actual.
+        printf(".");                                    //Imprime un punto para separar los valores.
+        recorrerArbolPreOrden(ptrPadre->hizquierdo);    //Se mueve al hijo izquierdo.
+        recorrerArbolPreOrden(ptrPadre->hderecho);      //Se mueve al hijo derecho.
     }
     
 }
 
-void recorrerArbolPostOrden(nodo *ptrPadre){
-    if (ptrPadre != NULL)
+void recorrerArbolPostOrden(nodo *ptrPadre){            //Crea una función para recorrer el árbol en postorden.
+    if (ptrPadre != NULL)                               //Si el árbol no está vació, entonces se ejecuta.
     {
-        recorrerArbolPostOrden(ptrPadre->hizquierdo);
-        recorrerArbolPostOrden(ptrPadre->hderecho);
-        printf("%d", ptrPadre->dato);
-        printf(".");
+        recorrerArbolPostOrden(ptrPadre->hizquierdo);   //Se mueve al hijo izquierdo.
+        recorrerArbolPostOrden(ptrPadre->hderecho);     //Se mueve al hijo derecho.
+        printf("%d", ptrPadre->dato);                   //Imprime el valor del nodo actual.
+        printf(".");                                    //Imprime un punto para separar los valores.
     }
     
 }
 
-typedef struct cola
+typedef struct cola                                     //Crea una estructura para la cola.
 {
-    nodo *nodoAb;
-    struct cola *sig;
-}Cola;
-Cola *inicio = NULL;
-Cola *fin = NULL;
-nodo *nodoLeido = NULL;
+    nodo *nodoAb;                                       //Crea un puntero de tipo nodo.
+    struct cola *sig;                                   //Crea un puntero de tipo cola.
+}Cola;                                                  //Crea un alias para la estructura.
 
-void Encolar(){
-    Cola *nuevoNodoCola = malloc(sizeof(Cola));
-    nuevoNodoCola->sig = NULL;
-    nodo *dato = malloc(sizeof(nodo));
-    dato->hderecho = dato->hizquierdo = NULL;
-    dato->dato = -1;
-    if (nodoLeido == NULL)
+Cola *inicio = NULL;                                    //Crea un puntero de tipo cola.
+Cola *fin = NULL;                                       //Crea un puntero de tipo cola.
+nodo *nodoLeido = NULL;                                 //Crea un puntero de tipo nodo.
+
+void Encolar(){                                         //Crea una función para encolar.
+    Cola *nuevoNodoCola = malloc(sizeof(Cola));         //Crea un nuevo nodo de tipo cola.
+    nuevoNodoCola->sig = NULL;                          //Inicializa el puntero en NULL.
+    nodo *dato = malloc(sizeof(nodo));                  //Crea un nuevo nodo de tipo nodo.
+    dato->hderecho = dato->hizquierdo = NULL;           //Inicializa los punteros en NULL.
+    dato->dato = -1;                                    //Inicializa el valor del nodo en -1.
+    if (nodoLeido == NULL)                              //Si el nodo leido está vació, entonces el nodo de la cola apunta al nodo creado.                     
     {
-        nuevoNodoCola->nodoAb = dato;
+        nuevoNodoCola->nodoAb = dato;                   //Si el nodo leido está vació, entonces el nodo de la cola apunta al nodo creado.
     }else
     {
-        nuevoNodoCola->nodoAb = nodoLeido;
+        nuevoNodoCola->nodoAb = nodoLeido;              //Si el nodo leido no está vació, entonces el nodo de la cola apunta al nodo leido.
     }
 
-    if (inicio == NULL)
+    if (inicio == NULL)                                 //Si el inicio está vació, entonces el inicio y el fin apuntan al nuevo nodo.
     {
-        inicio = nuevoNodoCola;
-        fin = nuevoNodoCola;
+        inicio = nuevoNodoCola;                         //El inicio apunta al nuevo nodo.
+        fin = nuevoNodoCola;                            //El fin apunta al nuevo nodo.
     }else
     {
-        fin->sig = nuevoNodoCola;
-        fin = nuevoNodoCola;
+        fin->sig = nuevoNodoCola;                       //Si el inicio no está vació, entonces el fin apunta al nuevo nodo.
+        fin = nuevoNodoCola;                            //El fin apunta al nuevo nodo.
     }
     
 }
@@ -150,10 +151,10 @@ int main(){                                             //Función main.
     agregarDatoArbol(45);                               //Agrega un dato y crea un nuevo nodo.
     mostrarArbol(arbol->raiz, 0);                       //lLama a la función mostrarArbol para imprimirlo en pantalla, le mandamos un puntero indicandole la raiz y en que posición empezamos.
     printf("\nInOrden:\n");
-    recorrerArbol(arbol->raiz);
+    recorrerArbol(arbol->raiz);                         //Llama a la función recorrerArbol para imprimirlo en pantalla, le mandamos un puntero indicandole la raiz.
     printf("\nPreOrden:\n");
-    recorrerArbolPreOrden(arbol->raiz);
+    recorrerArbolPreOrden(arbol->raiz);                 //Llama a la función recorrerArbolPreOrden para imprimirlo en pantalla, le mandamos un puntero indicandole la raiz.
     printf("\nPostOrden:\n");
-    recorrerArbolPostOrden(arbol->raiz);
+    recorrerArbolPostOrden(arbol->raiz);                //Llama a la función recorrerArbolPostOrden para imprimirlo en pantalla, le mandamos un puntero indicandole la raiz.
     return 0;                                           //Retorna 0 si todo está bien.
 }
