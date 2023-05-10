@@ -18,22 +18,22 @@ Nodo{
 };
 
 Arista{
-	Nodo*vrt;
-	Arista*siguiente;
+	Nodo* vrt;
+	Arista* siguiente;
 	int peso;
 };
 
 Lista{
 	Nodo* dato;
-	Lista*siguiente;
+	Lista* siguiente;
 };
 
-Nodo*inicio=NULL;
-Lista*ini=NULL;
-Lista*final=NULL;
+Nodo* inicio=NULL;
+Lista* ini=NULL;
+Lista* final=NULL;
 
 void insertarNodo();
-void agregarArista(Nodo*aux,Nodo*aux2,Arista*nuevo);
+void agregarArista(Nodo* aux,Nodo* aux2,Arista* nuevo);
 void insertarArista();
 void visualizarGrafo();
 void recorridos();
@@ -41,18 +41,18 @@ void recorridoAnchura();
 void recorridoProfundidad(Nodo* aux);
 void insertarPila(Nodo* aux);
 void insertarCola(Nodo* aux);
-Nodo*desencolar();
+Nodo* desencolar();
 void reiniciar();
 void dijkstra();
 
 int main(){
     int opcion,N,i;
-	printf("Ingrese número de vertices:");
+	printf("Ingrese número de vertices:\n");
     scanf("%i",&N);
     for(i=0;i<N;i++){
     	insertarNodo();
 	}
-	system("cls");
+	//system("cls");
     do{
     	printf("-----------\n");
         printf(" 1. Insertar Vertice                 \n");
@@ -62,7 +62,7 @@ int main(){
         printf(" 5. Dijkstra                         \n");
         printf(" 6. Salir                            \n");
         printf("------------\n");
-        printf("Escoge opcion:");
+        printf("Escoge opcion:\n");
         scanf("%i",&opcion);
         switch(opcion){
             case 1:
@@ -80,8 +80,8 @@ int main(){
             default: printf("Opcion no valida...!!!\n");
                      break;
         }
-        system("pause");
-        system("cls");
+        //system("pause");
+        //system("cls");
     }while(opcion!=6);
     return 1;
 }
@@ -90,7 +90,7 @@ void insertarNodo(){
     Nodo* aux;
 	Nodo* nuevo=(Nodo*)malloc(sizeof(Nodo));
 	fflush(stdin);
-	printf("Ingrese vertice:");
+	printf("Ingrese vertice:\n");
 	scanf("%c",&nuevo->dato);
 	nuevo->siguiente=NULL;
     nuevo->adyacencia=NULL;
@@ -120,9 +120,9 @@ void insertarArista(){
          return;
     }
     fflush(stdin);
-    printf("Ingresar Nodo Inicial y Final:");
+    printf("Ingresar Nodo Inicial y Final:\n");
     scanf("%c %c",&ini,&fin);
-    printf("Ingresar Peso de la arista:");
+    printf("Ingresar Peso de la arista:\n");
     scanf("%i",&nuevo->peso);
     aux=inicio;
     aux2=inicio;
@@ -162,7 +162,7 @@ void agregarArista(Nodo* aux,Nodo* aux2,Arista* nuevo){
 }
 
 void visualizarGrafo(){
-    Nodo*aux=inicio;
+    Nodo* aux=inicio;
     Arista* ar;
     printf("Nodos\n");
     while(aux!=NULL){
@@ -182,10 +182,10 @@ void visualizarGrafo(){
 
 void recorridos(){
 	char vertice;
-	Nodo*aux=inicio,*aux2=inicio;
+	Nodo* aux=inicio,*aux2=inicio;
   if(inicio!=NULL){
   	 fflush(stdin);
-  	 printf("Escoger vertice inicial:");
+  	 printf("Escoger vertice inicial:\n");
      scanf("%c",&vertice);
      while(aux!=NULL){
   	    if(aux->dato==vertice)
@@ -216,7 +216,7 @@ void recorridos(){
 }
 
 void recorridoAnchura(){
-	Nodo*aux=desencolar();
+	Nodo* aux=desencolar();
 	if(aux==NULL)
 	return;
 	printf("%c ",aux->dato);
@@ -235,7 +235,7 @@ void recorridoAnchura(){
 }
 
 void recorridoProfundidad(Nodo* aux){
-	Arista*a;
+	Arista* a;
 	aux->visitado=1;
     if(aux->adyacencia!=NULL){
         a=aux->adyacencia;
@@ -251,7 +251,7 @@ void recorridoProfundidad(Nodo* aux){
 }
 
 void insertarPila(Nodo* aux){
-	Lista*nuevo=(Lista*)malloc(sizeof(Lista));
+	Lista* nuevo= (Lista*) malloc(sizeof(Lista));
 	nuevo->dato=aux;
 	nuevo->siguiente=NULL;
 	if(ini==NULL){
@@ -263,8 +263,8 @@ void insertarPila(Nodo* aux){
 	}
 }
 
-void insertarCola(Nodo*aux){
-	Lista*nuevo=(Lista*)malloc(sizeof(Lista));
+void insertarCola(Nodo* aux){
+	Lista* nuevo=(Lista*) malloc(sizeof(Lista));
 	nuevo->dato=aux;
 	nuevo->siguiente=NULL;
 	if(ini==NULL){
@@ -276,8 +276,8 @@ void insertarCola(Nodo*aux){
 	}
 }
 
-Nodo*desencolar(){
-	Lista*aux;
+Nodo* desencolar(){
+	Lista* aux;
 	if(ini==NULL){
 		return NULL;
 	}else{
@@ -287,14 +287,14 @@ Nodo*desencolar(){
 		if(ini==NULL)
 		final=NULL;
 	}
-	Nodo*resultado=aux->dato;
+	Nodo* resultado=aux->dato;
 	free(aux);
 	return resultado;
 }
 
 void reiniciar(){
 	if(inicio!=NULL){
-		Nodo*aux=inicio;
+		Nodo* aux=inicio;
 		while(aux!=NULL){
 			aux->visitado=aux->terminado=0;
 		    aux=aux->siguiente;
@@ -303,10 +303,10 @@ void reiniciar(){
 }
 
 void dijkstra(){
-	Nodo*aux=inicio;
+	Nodo* aux=inicio;
 	char a,b;
 	fflush(stdin);
-	printf("Ingresar Nodo Inicial y Final:");
+	printf("Ingresar Nodo Inicial y Final:\n");
 	scanf("%c %c",&a,&b);
 	while(aux!=NULL){
 		if(aux->dato==a){
@@ -321,7 +321,7 @@ void dijkstra(){
 		return;
 	}
 	while(aux!=NULL){
-		Arista*a=aux->adyacencia;
+		Arista* a=aux->adyacencia;
 	    while(a!=NULL){
 		    if(a->vrt->monto==-1 || (aux->monto+a->peso)<a->vrt->monto){
 		    	a->vrt->monto=aux->monto+a->peso;
@@ -330,7 +330,7 @@ void dijkstra(){
 		    a=a->siguiente;
 	    }
 	    aux=inicio;
-	    Nodo*min=inicio;
+	    Nodo* min=inicio;
 	    while(min->anterior==0 || min->terminado ==1)
 	    min=min->siguiente;
 	    while(aux!=NULL){
@@ -341,7 +341,7 @@ void dijkstra(){
 		aux=min;
 		aux->terminado=1;
 		if(aux->dato==b)
-		break;
+			break;
 	}
 	while(aux->anterior!=0){
 		insertarPila(aux);
