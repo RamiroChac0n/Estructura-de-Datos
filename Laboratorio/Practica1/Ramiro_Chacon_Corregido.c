@@ -1,27 +1,27 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int comprobarPrimos(numInf, numSup){            //Agrega una funcion.
-    int i;
-    for ( i = numInf; i <= numSup; i++)
+int comprobarPrimos(numeroInferior, numeroSuperior){            //Agrega una funcion.
+    int posiblePrimo;
+    for ( posiblePrimo = numeroInferior; posiblePrimo <= numeroSuperior; posiblePrimo++)
     {
-        int j;
-        int bandera = 0;
-        for ( j = 1; j <= numSup; j++)
+        int divisor;
+        int numeroDePrimos = 0;
+        for ( divisor = 1; divisor <= numeroSuperior; divisor++)
         {
-            if (i % j == 0)
+            if (posiblePrimo % divisor == 0)
             {
-                bandera++;
+                numeroDePrimos++;
             }
 
-            if (bandera > 2 || j >= i)          //Los numeros primos solo tienen 2 divisores (1 y ellos mismos), si tienen mas, no son primos.
+            if (numeroDePrimos > 2 || divisor >= posiblePrimo)          //Los numeros primos solo tienen 2 divisores (1 y ellos mismos), si tienen mas, no son primos.
             {
                 break;
             }
         }
-        if (bandera <= 2 && !(i < 2))           //El primo mas pequenio es 2
+        if (numeroDePrimos <= 2 && !(posiblePrimo < 2))           //El primo mas pequenio es 2
         {
-            printf("%d \n",i);
+            printf("%d \n",posiblePrimo);
         }
         
     }
