@@ -1,7 +1,22 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int comprobarPrimos(numeroInferior, numeroSuperior){            //Agrega una funcion.
+int esPrimo(int numeroDePrimos, int posiblePrimo){
+    if(numeroDePrimos <= 2 && !(posiblePrimo < 2)){           //El primo mas pequenio es 2
+        return 1;
+    }
+    return 0;
+}
+
+void imprimePrimos(int numeroDePrimos, int posiblePrimo){
+    if (esPrimo(numeroDePrimos, posiblePrimo))           //El primo mas pequenio es 2
+    {
+        int primo = posiblePrimo;
+        printf("%d \n",primo);
+    }
+}
+
+int comprobarPrimos(int numeroInferior, int numeroSuperior){            //Agrega una funcion.
     int posiblePrimo;
     for ( posiblePrimo = numeroInferior; posiblePrimo <= numeroSuperior; posiblePrimo++)
     {
@@ -19,11 +34,7 @@ int comprobarPrimos(numeroInferior, numeroSuperior){            //Agrega una fun
                 break;
             }
         }
-        if (numeroDePrimos <= 2 && !(posiblePrimo < 2))           //El primo mas pequenio es 2
-        {
-            printf("%d \n",posiblePrimo);
-        }
-        
+        imprimePrimos(numeroDePrimos, posiblePrimo);
     }
     return 0;
 }
